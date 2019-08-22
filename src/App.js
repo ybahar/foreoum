@@ -4,9 +4,9 @@ import MessageBoard from './components/MessageBoard/MessageBoard'
 import initBoards from './components/MessageBoard/Services/MessageBoardService';
 class App extends React.Component {
   boardControls ={
-    topic : {
+    post : {
       load(boardId){
-        console.log('topic Load' , `boardID ${boardId}`); // used to load topics using the board id
+        console.log('post Load' , `boardID ${boardId}`); // used to load posts using the board id
         return [{
           id : 'm101',
           title : 'title',
@@ -35,24 +35,24 @@ class App extends React.Component {
           }
         ]
       },
-      create(topic , boardId){
-        console.log('topic Create');
-        return topic // +_id from server
+      create(post , boardId){
+        console.log('post Create');
+        return post // +_id from server
       },
-      delete(topicId,boardId){
-        console.log('topic Delete');
+      delete(postId,boardId){
+        console.log('post Delete');
       },
-      update(topic){
-        console.log('topic Update');
+      update(post){
+        console.log('post Update');
         
       }
     },
     reply: {
-      load(replyIds){ //topic.replies
+      load(replyIds){ //post.replies
         console.log('reply load')
         return [{ 
           id : 'r101',
-          topic : {
+          post : {
               title : 'title',
               id : 'm101',
           },
@@ -68,12 +68,12 @@ class App extends React.Component {
         console.log('reply Create');
         return reply // +_id from server
       },
-      delete(topicId,boardId){
+      delete(postId,boardId){
         console.log('reply Delete');
         return {}
       },
       update(reply){
-        console.log('topic Update');
+        console.log('post Update');
         return reply;
       },
     }
@@ -100,3 +100,7 @@ class App extends React.Component {
 }
 
 export default App;
+
+
+
+

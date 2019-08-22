@@ -1,9 +1,9 @@
 import React , {Component} from 'react'
 import { boardControlSubject } from './Services/MessageBoardService';
-
+import PostList from './Components/PostList/PostList';
 export default class MessageBoard extends Component {
     state = {
-        topics : [],
+        posts : [],
         boardControl :null,
     }
     async componentDidMount(){
@@ -14,17 +14,22 @@ export default class MessageBoard extends Component {
     loadTopics = async () => {
         if(!this.state.boardControl) return;
         const {_id} = this.props.boardData
-        const topics = await this.state.boardControl.topic.load(_id);
-        this.setState({topics})
+        const posts = await this.state.boardControl.post.load(_id);
+        this.setState({posts})
     }
     componentWillUnmount(){
         boardControlSubject.unsubscribe();
     }
+    test = async ()=>{
+       this.state.boardControl.post.create({});
+    }
+    
     render(){
       return (
           <div>
-              {this.state.topics.map(topic => <h3>{topic.title}</h3>)}
-          </div>
+              <section><h1>Filter goes here</h1></section>
+              <PostList posts={this.state.posts}></PostList>
+              </div>
       )    
     }
 }
