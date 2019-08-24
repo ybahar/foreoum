@@ -1,7 +1,10 @@
 import React from 'react';
+import { BrowserRouter, Switch, Route, Link } from 'react-router-dom'
+
 import './App.css';
-import MessageBoard from './components/MessageBoard/MessageBoard'
+
 import initBoards from './components/MessageBoard/Services/MessageBoardService';
+import { Freoum } from './components/MessageBoard';
 class App extends React.Component {
   boardControls ={
     post : {
@@ -15,6 +18,7 @@ class App extends React.Component {
             userId : 'u102',
               username: ' not an admin '
             }, 
+            rating: 0,
             createdAt : Date.now(),
             isOpen : true,
             board : 'b101', 
@@ -24,6 +28,7 @@ class App extends React.Component {
           id : 'm102',
           title : 'title2',
           body : 'body2',
+          rating: 0,
           creator : {
             userId : 'u103',
               username: ' not an admin 2'
@@ -44,7 +49,22 @@ class App extends React.Component {
       },
       update(post){
         console.log('post Update');
-        
+      },
+      loadById(){
+        return {
+          id : 'm102',
+          title : 'title2',
+          body : 'body2',
+          creator : {
+            userId : 'u103',
+              username: ' not an admin 2'
+            }, 
+            rating: 0,
+            createdAt : Date.now(),
+            isOpen : true,
+            board : 'b101', 
+            replies : ['r102' , 'r103']
+          }
       }
     },
     reply: {
@@ -93,7 +113,11 @@ class App extends React.Component {
   render(){
     return (
       <div className="App">
-     <MessageBoard boardData={this.boardData} user={this.userData}></MessageBoard>
+      <BrowserRouter>
+      <Switch>
+      <Route  path="/" render={()=><Freoum basename="/"></Freoum>  }></Route>
+      </Switch>
+      </BrowserRouter>
     </div>
   );
 }
