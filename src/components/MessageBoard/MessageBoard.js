@@ -1,4 +1,4 @@
-import React , {Component} from 'react'
+import React , {Component} from 'react';
 
 import { boardControlSubject } from './Services/MessageBoardService';
 import PostList from './Components/PostList/PostList';
@@ -9,7 +9,6 @@ export default class MessageBoard extends Component {
     }
     async componentDidMount(){
         boardControlSubject.subscribe(boardControl=>{
-           console.log('koko')
              this.setState({boardControl},this.loadTopics)
 
         })
@@ -17,15 +16,11 @@ export default class MessageBoard extends Component {
     loadTopics = async () => {
         if(!this.state.boardControl) return;
         const {_id} = this.props.boardData
-        const posts = await this.state.boardControl.post.load(_id);
+        const posts = await this.state.boardControl.post({type:'load',boardId:_id});
         this.setState({posts})
     }
-    componentWillUnmount(){
-    }
-    test = async ()=>{
-       this.state.boardControl.post.create({});
-    }
-    
+
+
     render(){
       return (
           <div>
