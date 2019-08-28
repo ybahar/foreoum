@@ -27,7 +27,7 @@ class App extends React.Component {
         case "load":
           return mockReplies;
         case "save":
-          console.log("in save reply");
+          console.log("in save reply" , payload);
           break;
         case "getById":
           return mockReplies.find(reply => reply._id === payload.replyId);

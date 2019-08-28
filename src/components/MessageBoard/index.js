@@ -14,7 +14,6 @@ export class Freoum extends Component {
           <Link to="/"> pop </Link>{" "}
           <Switch>
             <Route exact path="/">
-              {" "}
               <MessageBoard boardData={{ _id: "lo" }}> </MessageBoard>
             </Route>
             <Route
